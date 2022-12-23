@@ -23,7 +23,7 @@ const initialFocusState = {
   password: false,
 };
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [form, setForm] = useState(initialFormState);
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -151,7 +151,13 @@ const LoginScreen = () => {
             </View>
 
             {!isKeyboardShown && (
-              <TouchableOpacity activeOpacity={0.8} style={styles.link}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => {
+                  navigation.navigate("Registration");
+                }}
+                style={styles.link}
+              >
                 <Text style={styles.linkText}>
                   Нет аккаунта? Зарегистрироваться
                 </Text>

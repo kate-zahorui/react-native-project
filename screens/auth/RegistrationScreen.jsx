@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import {
+  Image,
   ImageBackground,
   Keyboard,
   KeyboardAvoidingView,
@@ -14,20 +15,23 @@ import {
 } from "react-native";
 
 const initialFormState = {
+  name: "",
   email: "",
   password: "",
 };
 
 const initialFocusState = {
+  name: false,
   email: false,
   password: false,
 };
 
-const LoginScreen = ({ navigation }) => {
+const RegistrationScreen = ({ navigation }) => {
   const [form, setForm] = useState(initialFormState);
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isOnFocus, setIsOnFocus] = useState(initialFocusState);
+  const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
 
   const handleKeyboardHide = () => {
     setIsKeyboardShown(false);
@@ -47,6 +51,10 @@ const LoginScreen = ({ navigation }) => {
 
   const changePasswordVisibility = () => {
     setIsPasswordShown(!isPasswordShown);
+  };
+
+  const handleLoginChange = (value) => {
+    setForm((prevState) => ({ ...prevState, name: value }));
   };
 
   const handleEmailChange = (value) => {
@@ -72,21 +80,55 @@ const LoginScreen = ({ navigation }) => {
       >
         <ImageBackground
           style={styles.background}
-          source={require("../../../assets/images/background.png")}
+          source={require("../../assets/images/background.png")}
         >
           <View
             style={{
               ...styles.contentContainer,
-              paddingBottom: isKeyboardShown ? 32 : 111,
+              paddingBottom: isKeyboardShown ? 32 : 45,
             }}
           >
-            <View style={styles.header}>
-              <Text style={styles.headerText}>Войти</Text>
+            <View style={styles.userImage}>
+              <Image
+                style={styles.btnIcon}
+                source={
+                  isPhotoUploaded
+                    ? require("../../assets/images/delete.png")
+                    : require("../../assets/images/add.png")
+                }
+              />
             </View>
+
+            <View style={styles.header}>
+              <Text style={styles.headerText}>Регистрация</Text>
+            </View>
+
             <View style={styles.form}>
               <View style={styles.inputBox}>
                 <TextInput
-                  placeholder="Адрес электронной почты "
+                  placeholder="Логин"
+                  placeholderTextColor="#BDBDBD"
+                  value={form.name}
+                  name="name"
+                  onChangeText={handleLoginChange}
+                  onFocus={handleInputFocus}
+                  onBlur={handleInputBlur}
+                  required
+                  style={
+                    isOnFocus.name
+                      ? {
+                          ...styles.input,
+                          ...styles.inputOnFocus,
+                        }
+                      : styles.input
+                  }
+                />
+              </View>
+              <View style={styles.inputBox}>
+                <TextInput
+                  placeholder="Адрес электронной почты"
+                  placeholderTextColor="#BDBDBD"
+                  keyboardType="email-address"
                   value={form.email}
                   name="email"
                   onChangeText={handleEmailChange}
@@ -112,6 +154,7 @@ const LoginScreen = ({ navigation }) => {
                 <TextInput
                   secureTextEntry={isPasswordShown ? false : true}
                   placeholder="Пароль"
+                  placeholderTextColor="#BDBDBD"
                   value={form.password}
                   name="password"
                   onChangeText={handlePasswordChange}
@@ -145,7 +188,7 @@ const LoginScreen = ({ navigation }) => {
                   onPress={handleFormSubmit}
                   style={styles.formButton}
                 >
-                  <Text style={styles.formButtonText}>Войти</Text>
+                  <Text style={styles.formButtonText}>Зарегистрироваться</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -154,13 +197,11 @@ const LoginScreen = ({ navigation }) => {
               <TouchableOpacity
                 activeOpacity={0.8}
                 onPress={() => {
-                  navigation.navigate("Registration");
+                  navigation.navigate("Login");
                 }}
                 style={styles.link}
               >
-                <Text style={styles.linkText}>
-                  Нет аккаунта? Зарегистрироваться
-                </Text>
+                <Text style={styles.linkText}>Уже есть аккаунт? Войти</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -184,14 +225,28 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     alignItems: "center",
-    paddingTop: 32,
+    paddingTop: 92,
     paddingLeft: 16,
     paddingRight: 16,
-
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#fff",
     fontFamily: "Roboto-Regular",
+  },
+  userImage: {
+    position: "absolute",
+    top: -60,
+    width: 120,
+    height: 120,
+    borderRadius: 16,
+    backgroundColor: "#F6F6F6",
+  },
+  btnIcon: {
+    position: "absolute",
+    right: -12,
+    bottom: 14,
+    width: 25,
+    height: 25,
   },
   header: {
     marginBottom: 32,
@@ -215,9 +270,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E8E8E8",
     backgroundColor: "#F6F6F6",
-    color: "#BDBDBD",
+    color: "#212121",
     fontSize: 16,
-    lineHeight: 1.19,
+    // lineHeight: 1.19,
   },
   inputOnFocus: {
     borderColor: "#FF6C00",
@@ -260,4 +315,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default RegistrationScreen;

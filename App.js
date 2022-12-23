@@ -1,12 +1,10 @@
 import React, { useCallback } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+
 import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { LoginScreen, RegistrationScreen } from "./screens/auth";
-
-const Stack = createNativeStackNavigator();
+import useRoute from "./router";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -24,21 +22,12 @@ export default function App() {
     return null;
   }
 
+  const routing = useRoute(true);
+
   return (
     <NavigationContainer>
       <View onLayout={onLayoutRootView} style={styles.container}>
-        <Stack.Navigator initialRouteName="Registration">
-          <Stack.Screen
-            name="Registration"
-            component={RegistrationScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
+        {routing}
       </View>
     </NavigationContainer>
   );

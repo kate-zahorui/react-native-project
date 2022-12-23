@@ -1,8 +1,6 @@
-import React, { useState, useCallback } from "react";
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
+import React, { useState } from "react";
+
 import {
-  Image,
   ImageBackground,
   Keyboard,
   KeyboardAvoidingView,
@@ -16,38 +14,20 @@ import {
 } from "react-native";
 
 const initialFormState = {
-  name: "",
   email: "",
   password: "",
 };
 
 const initialFocusState = {
-  name: false,
   email: false,
   password: false,
 };
 
-const RegistrationScreen = () => {
+const LoginScreen = () => {
   const [form, setForm] = useState(initialFormState);
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isOnFocus, setIsOnFocus] = useState(initialFocusState);
-  const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
-
-  const [fontsLoaded] = useFonts({
-    "Roboto-Regular": require("../../assets/fonts/Roboto/Roboto-Regular.ttf"),
-    "Roboto-Medium": require("../../assets/fonts/Roboto/Roboto-Medium.ttf"),
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
 
   const handleKeyboardHide = () => {
     setIsKeyboardShown(false);
@@ -67,10 +47,6 @@ const RegistrationScreen = () => {
 
   const changePasswordVisibility = () => {
     setIsPasswordShown(!isPasswordShown);
-  };
-
-  const handleLoginChange = (value) => {
-    setForm((prevState) => ({ ...prevState, name: value }));
   };
 
   const handleEmailChange = (value) => {
@@ -93,59 +69,24 @@ const RegistrationScreen = () => {
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
         style={styles.container}
-        onLayout={onLayoutRootView}
       >
         <ImageBackground
           style={styles.background}
-          source={require("../../assets/images/background.png")}
+          source={require("../../../assets/images/background.png")}
         >
           <View
             style={{
               ...styles.contentContainer,
-              paddingBottom: isKeyboardShown ? 32 : 45,
+              paddingBottom: isKeyboardShown ? 32 : 111,
             }}
           >
-            <View style={styles.userImage}>
-              <Image
-                style={styles.btnIcon}
-                source={
-                  isPhotoUploaded
-                    ? require("../../assets/images/delete.png")
-                    : require("../../assets/images/add.png")
-                }
-              />
-            </View>
-
             <View style={styles.header}>
-              <Text style={styles.headerText}>Регистрация</Text>
+              <Text style={styles.headerText}>Войти</Text>
             </View>
-
             <View style={styles.form}>
               <View style={styles.inputBox}>
                 <TextInput
-                  placeholder="Логин"
-                  placeholderTextColor="#BDBDBD"
-                  value={form.name}
-                  name="name"
-                  onChangeText={handleLoginChange}
-                  onFocus={handleInputFocus}
-                  onBlur={handleInputBlur}
-                  required
-                  style={
-                    isOnFocus.name
-                      ? {
-                          ...styles.input,
-                          ...styles.inputOnFocus,
-                        }
-                      : styles.input
-                  }
-                />
-              </View>
-              <View style={styles.inputBox}>
-                <TextInput
-                  placeholder="Адрес электронной почты"
-                  placeholderTextColor="#BDBDBD"
-                  keyboardType="email-address"
+                  placeholder="Адрес электронной почты "
                   value={form.email}
                   name="email"
                   onChangeText={handleEmailChange}
@@ -171,7 +112,6 @@ const RegistrationScreen = () => {
                 <TextInput
                   secureTextEntry={isPasswordShown ? false : true}
                   placeholder="Пароль"
-                  placeholderTextColor="#BDBDBD"
                   value={form.password}
                   name="password"
                   onChangeText={handlePasswordChange}
@@ -205,14 +145,16 @@ const RegistrationScreen = () => {
                   onPress={handleFormSubmit}
                   style={styles.formButton}
                 >
-                  <Text style={styles.formButtonText}>Зарегистрироваться</Text>
+                  <Text style={styles.formButtonText}>Войти</Text>
                 </TouchableOpacity>
               )}
             </View>
 
             {!isKeyboardShown && (
               <TouchableOpacity activeOpacity={0.8} style={styles.link}>
-                <Text style={styles.linkText}>Уже есть аккаунт? Войти</Text>
+                <Text style={styles.linkText}>
+                  Нет аккаунта? Зарегистрироваться
+                </Text>
               </TouchableOpacity>
             )}
           </View>
@@ -236,28 +178,14 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     alignItems: "center",
-    paddingTop: 92,
+    paddingTop: 32,
     paddingLeft: 16,
     paddingRight: 16,
+
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#fff",
     fontFamily: "Roboto-Regular",
-  },
-  userImage: {
-    position: "absolute",
-    top: -60,
-    width: 120,
-    height: 120,
-    borderRadius: 16,
-    backgroundColor: "#F6F6F6",
-  },
-  btnIcon: {
-    position: "absolute",
-    right: -12,
-    bottom: 14,
-    width: 25,
-    height: 25,
   },
   header: {
     marginBottom: 32,
@@ -281,9 +209,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E8E8E8",
     backgroundColor: "#F6F6F6",
-    color: "#212121",
+    color: "#BDBDBD",
     fontSize: 16,
-    // lineHeight: 1.19,
+    lineHeight: 1.19,
   },
   inputOnFocus: {
     borderColor: "#FF6C00",
@@ -326,4 +254,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegistrationScreen;
+export default LoginScreen;

@@ -4,7 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 
 import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import useRoute from "./router";
+import useRoute from "./routes/router";
 
 export default function App() {
   const [fontsLoaded] = useFonts({

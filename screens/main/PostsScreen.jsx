@@ -2,11 +2,12 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { PostsList, UserInfo } from "../../components";
 
-const PostsScreen = () => {
+const PostsScreen = ({ navigation }) => {
+  console.log(navigation);
   return (
     <View style={styles.container}>
       <UserInfo />
-      <PostsList />
+      <PostsList navigation={navigation} />
     </View>
   );
 };

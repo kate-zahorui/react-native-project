@@ -35,8 +35,10 @@ const DATA = [
   },
 ];
 
-const PostsList = () => {
-  const renderItem = ({ item }) => <Post postData={item} />;
+const PostsList = ({ navigation }) => {
+  const renderItem = ({ item }) => (
+    <Post postData={item} navigation={navigation} />
+  );
 
   return (
     <View style={styles.listContainer}>

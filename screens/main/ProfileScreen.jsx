@@ -2,7 +2,7 @@ import React from "react";
 import { ImageBackground, Text, StyleSheet, View } from "react-native";
 import { UserPhoto, PostsList } from "../../components";
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -13,7 +13,7 @@ const ProfileScreen = () => {
           <UserPhoto />
 
           <Text style={styles.userName}>Natali Romanova</Text>
-          <PostsList />
+          <PostsList navigation={navigation} />
         </View>
       </ImageBackground>
     </View>

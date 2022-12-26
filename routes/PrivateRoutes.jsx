@@ -3,14 +3,16 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SimpleLineIcons, AntDesign, Feather } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 
-import { CreatePostsScreen, PostsScreen, ProfileScreen } from "../screens/main";
+import { CreatePostsScreen } from "../screens/main";
+import HomeNavigator from "./HomeNavigator";
+import ProfileNavigator from "./ProfileNavigator";
 
 const MainTab = createBottomTabNavigator();
 
 const PrivateRoutes = () => {
   return (
     <MainTab.Navigator
-      initialRouteName="Публикации"
+      initialRouteName="Home"
       backBehavior="initialRoute"
       screenOptions={{
         tabBarShowLabel: false,
@@ -20,8 +22,8 @@ const PrivateRoutes = () => {
       }}
     >
       <MainTab.Screen
-        name="Публикации"
-        component={PostsScreen}
+        name="Home"
+        component={HomeNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
             <SimpleLineIcons
@@ -30,6 +32,7 @@ const PrivateRoutes = () => {
               color={focused ? "#ffffff" : "#212121"}
             />
           ),
+          headerShown: false,
         }}
       />
       <MainTab.Screen
@@ -47,7 +50,7 @@ const PrivateRoutes = () => {
       />
       <MainTab.Screen
         name="Профиль"
-        component={ProfileScreen}
+        component={ProfileNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather

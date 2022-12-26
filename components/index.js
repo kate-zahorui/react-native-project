@@ -1,3 +1,5 @@
+export { default as CameraBtn } from "./CameraBtn";
+export { default as DeleteBtn } from "./DeleteBtn";
 export { default as LogoutBtn } from "./LogoutBtn";
 export { default as Post } from "./Post";
 export { default as PostPhoto } from "./PostPhoto";

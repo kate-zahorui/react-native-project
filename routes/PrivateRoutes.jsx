@@ -19,6 +19,7 @@ const PrivateRoutes = () => {
         tabBarStyle: styles.container,
         tabBarItemStyle: styles.item,
         tabBarActiveBackgroundColor: "#FF6C00",
+        tabBarHideOnKeyboard: true,
       }}
     >
       <MainTab.Screen
@@ -39,6 +40,7 @@ const PrivateRoutes = () => {
         name="Создать публикацию"
         component={CreatePostsScreen}
         options={{
+          tabBarStyle: { display: "none" },
           tabBarIcon: ({ focused }) => (
             <AntDesign
               name="plus"

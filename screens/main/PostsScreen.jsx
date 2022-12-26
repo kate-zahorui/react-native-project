@@ -1,10 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { PostsList, UserInfo } from "../../components";
 
 const PostsScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>PostsScreen</Text>
+      <UserInfo />
+      <PostsList />
     </View>
   );
 };
@@ -12,8 +14,11 @@ const PostsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
+    paddingTop: 32,
+    paddingBottom: 110,
+    backgroundColor: "#ffffff",
   },
 });
 

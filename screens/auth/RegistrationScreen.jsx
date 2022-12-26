@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import {
-  Image,
   ImageBackground,
   Keyboard,
   KeyboardAvoidingView,
@@ -13,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import { UserPhoto } from "../../components";
 
 const initialFormState = {
   name: "",
@@ -31,7 +31,6 @@ const RegistrationScreen = ({ navigation }) => {
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isOnFocus, setIsOnFocus] = useState(initialFocusState);
-  const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
 
   const handleKeyboardHide = () => {
     setIsKeyboardShown(false);
@@ -88,16 +87,7 @@ const RegistrationScreen = ({ navigation }) => {
               paddingBottom: isKeyboardShown ? 32 : 45,
             }}
           >
-            <View style={styles.userImage}>
-              <Image
-                style={styles.btnIcon}
-                source={
-                  isPhotoUploaded
-                    ? require("../../assets/images/delete.png")
-                    : require("../../assets/images/add.png")
-                }
-              />
-            </View>
+            <UserPhoto />
 
             <View style={styles.header}>
               <Text style={styles.headerText}>Регистрация</Text>

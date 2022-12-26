@@ -1,10 +1,21 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { ImageBackground, Text, StyleSheet, View } from "react-native";
+import { UserPhoto, PostsList } from "../../components";
 
 const ProfileScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>ProfileScreen</Text>
+      <ImageBackground
+        style={styles.background}
+        source={require("../../assets/images/background.png")}
+      >
+        <View style={styles.contentContainer}>
+          <UserPhoto />
+
+          <Text style={styles.userName}>Natali Romanova</Text>
+          <PostsList />
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -12,8 +23,29 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+  },
+  background: {
+    flex: 1,
+    height: 812,
+    paddingTop: 150,
+    resizeMode: "contain",
+  },
+  contentContainer: {
+    flex: 1,
     alignItems: "center",
+    paddingTop: 92,
+    paddingBottom: 110,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    backgroundColor: "#fff",
+    fontFamily: "Roboto-Regular",
+  },
+  userName: {
+    marginBottom: 33,
+    color: "#212121",
+    fontSize: 30,
+    // lineHeight: 1.17,
+    fontFamily: "Roboto-Medium",
   },
 });
 

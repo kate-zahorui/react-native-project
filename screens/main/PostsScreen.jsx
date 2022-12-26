@@ -3,7 +3,6 @@ import { View, StyleSheet } from "react-native";
 import { PostsList, UserInfo } from "../../components";
 
 const PostsScreen = ({ navigation }) => {
-  console.log(navigation);
   return (
     <View style={styles.container}>
       <UserInfo />

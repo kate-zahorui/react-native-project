@@ -1,6 +1,6 @@
 import React from "react";
 import { ImageBackground, Text, StyleSheet, View } from "react-native";
-import { UserPhoto, PostsList } from "../../components";
+import { LogoutBtn, UserPhoto, PostsList } from "../../components";
 
 const ProfileScreen = ({ navigation }) => {
   return (
@@ -11,6 +11,9 @@ const ProfileScreen = ({ navigation }) => {
       >
         <View style={styles.contentContainer}>
           <UserPhoto />
+          <View style={styles.btnContainer}>
+            <LogoutBtn />
+          </View>
 
           <Text style={styles.userName}>Natali Romanova</Text>
           <PostsList navigation={navigation} />
@@ -39,6 +42,11 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     backgroundColor: "#fff",
     fontFamily: "Roboto-Regular",
+  },
+  btnContainer: {
+    position: "absolute",
+    right: 16,
+    top: 22,
   },
   userName: {
     marginBottom: 33,

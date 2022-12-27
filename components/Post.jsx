@@ -14,7 +14,7 @@ const Post = ({ navigation, postData }) => {
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => {
-              navigation.navigate("Комментарии");
+              navigation.navigate("Комментарии", { photo: postData.url });
             }}
             style={styles.link}
           >
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular",
   },
   title: {
+    marginTop: 8,
     marginBottom: 8,
     fontFamily: "Roboto-Medium",
     fontSize: 16,

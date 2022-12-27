@@ -1,4 +1,7 @@
 export { default as CameraBtn } from "./CameraBtn";
+export { default as CommentForm } from "./CommentForm";
+export { default as CommentItem } from "./CommentItem";
+export { default as CommentsList } from "./CommentsList";
 export { default as DeleteBtn } from "./DeleteBtn";
 export { default as LogoutBtn } from "./LogoutBtn";
 export { default as Post } from "./Post";

@@ -4,11 +4,14 @@ import { SimpleLineIcons, AntDesign, Feather } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 
 import { CreatePostsScreen, PostsScreen, ProfileScreen } from "../screens/main";
-import { LogoutBtn } from "../components";
+import { BackBtn, LogoutBtn } from "../components";
 
 const BottomTabs = createBottomTabNavigator();
 
-const BottomTabsNavigator = () => {
+const BottomTabsNavigator = ({ navigation }) => {
+  const goBack = () => {
+    navigation.goBack();
+  };
   return (
     <BottomTabs.Navigator
       initialRouteName="Публикации"
@@ -40,6 +43,8 @@ const BottomTabsNavigator = () => {
         name="Создать публикацию"
         component={CreatePostsScreen}
         options={{
+          headerTitleAlign: "center",
+          headerLeft: () => <BackBtn onClick={goBack} />,
           tabBarStyle: { display: "none" },
           tabBarIcon: ({ focused }) => (
             <AntDesign

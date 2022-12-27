@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     position: "absolute",
-    right: 16,
+    right: 6,
     top: 22,
   },
   userName: {

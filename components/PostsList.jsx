@@ -56,8 +56,6 @@ const styles = StyleSheet.create({
   listContainer: {
     alignItems: "center",
     width: "100%",
-
-    backgroundColor: "#2a3d4h",
   },
   list: {
     width: "100%",
